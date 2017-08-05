@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html ng-app='myApp'>
+    <head>
+        <meta charset="utf-8">
+        <title>Show Data</title>
+        <!-- Angular -->
+        <script src="../bower_components/angular/angular.js" charset="utf-8"></script>
+        <script src="./assets/app.js" charset="utf-8"></script>
+        <script src="./assets/factories/mainFactory.js" charset="utf-8"></script>
+        <script src="./assets/controllers/mainController.js" charset="utf-8"></script>
+        <!-- Custom Stylesheet -->
+        <link rel="stylesheet" type="text/css" href="./assets/stylesheets/main.css">
+        <!-- amcharts Resources -->
+        <script src="https://www.amcharts.com/lib/3/ammap.js"></script>
+        <script src="https://www.amcharts.com/lib/3/maps/js/usaLow.js"></script>
+        <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+        <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+        <script src="https://www.amcharts.com/lib/3/themes/chalk.js"></script>
+    </head>
+    <body>
+        <div ng-controller='mainController'>
+            <table>
+                <tr>
+                    <th>State</th>
+                    <th>Date</th>
+                </tr>
+                <tr ng-repeat="state in states track by $index">
+                    <td>{{ state.name }}</td>
+                    <td>{{ state.date | date: 'MM/dd/yyyy'}}</td>
+                </tr>
+            </table>
+            <form ng-submit="filterDate()">
+                <p>Select a date: <input type="date" ng-model="fdate"> <input class="button" type="submit" value="Submit"></p>
+            </form>
+            <!-- For error checking: -->
+            <!-- <p>{{ results }}</p> -->
+            <hr>
+            <my-map results="results"></my-map>
+        </div>
+    </body>
+</html>
